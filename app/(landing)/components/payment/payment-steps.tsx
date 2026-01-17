@@ -1,28 +1,11 @@
 "use client";
 
-<<<<<<< HEAD
-import { FiCheckCircle } from "react-icons/fi";
-=======
 import { FiCheckCircle, FiCreditCard } from "react-icons/fi";
->>>>>>> 7bf438c (Update Integrasi Frontend & Backend)
 import CardWithHeader from "../ui/card-with-header";
 import FileUpload from "../ui/file-upload";
 import priceFormatter from "@/app/utils/price-formatter";
 import Button from "../ui/button";
 import { useRouter } from "next/navigation";
-<<<<<<< HEAD
-
-const PaymentSteps = () => {
-  const { push } = useRouter();
-
-  const uploadAndConfirm = () => {
-    push("/order-status/283838");
-  };
-  return (
-    <CardWithHeader title="Payment Steps">
-      <div className="p-5">
-        <ol className="list-desimal text-xs pl-2 flex flex-col gap-4 mb-5">
-=======
 import { useState } from "react";
 import { useCartStore } from "@/app/hooks/use-cart-store";
 import { transactionCheckout } from "@/app/services/transaction.service";
@@ -80,7 +63,6 @@ const PaymentSteps = () => {
     <CardWithHeader title="Payment Steps">
       <div className="p-5">
         <ol className="list-decimal text-xs pl-2 flex flex-col gap-4 mb-5">
->>>>>>> 7bf438c (Update Integrasi Frontend & Backend)
           <li>
             Transfer the total amount of <b>Rp. 1.035.000</b> to your preferred
             bank account listed under 'Payment Options' (BCA, Mandiri, or BTPN).
@@ -96,14 +78,6 @@ const PaymentSteps = () => {
             transaction.
           </li>
         </ol>
-<<<<<<< HEAD
-        <FileUpload />
-      </div>
-      <div className="border-t border-gray-200 p-4">
-        <div className="flex justify-between font-semibold">
-          <div className="text-sm">Total</div>
-          <div className="text-primary text-xs">{priceFormatter(45000)}</div>
-=======
         <FileUpload onFileSelect={setFile} />
       </div>
 
@@ -113,16 +87,11 @@ const PaymentSteps = () => {
           <div className="text-primary text-xs">
             {priceFormatter(totalPrice)}
           </div>
->>>>>>> 7bf438c (Update Integrasi Frontend & Backend)
         </div>
         <Button
           variant="dark"
           className="w-full mt-4"
-<<<<<<< HEAD
-          onClick={uploadAndConfirm}
-=======
           onClick={handleConfirmPayment}
->>>>>>> 7bf438c (Update Integrasi Frontend & Backend)
         >
           <FiCheckCircle />
           Upload Receipt & Confirm
