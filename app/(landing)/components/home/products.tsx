@@ -1,8 +1,14 @@
+<<<<<<< HEAD
+=======
+"use client";
+
+>>>>>>> 7bf438c (Update Integrasi Frontend & Backend)
 import Link from "next/link";
 import Image from "next/image";
 import Button from "../ui/button";
 import { FiPlus } from "react-icons/fi";
 import priceFormatter from "@/app/utils/price-formatter";
+<<<<<<< HEAD
 
 const productList = [
   {
@@ -44,33 +50,75 @@ const productList = [
 ];
 
 const ProductsSection = () => {
+=======
+import { Product } from "@/app/types";
+import { getImageUrl } from "@/app/lib/api";
+import { useCartStore } from "@/app/hooks/use-cart-store";
+import React from "react";
+
+type TProductsProps = {
+  products: Product[];
+};
+
+const ProductsSection = ({ products }: TProductsProps) => {
+  const { addItem } = useCartStore();
+
+  const handleAddtoCart = (e: React.MouseEvent, product: Product) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addItem(product);
+  };
+
+>>>>>>> 7bf438c (Update Integrasi Frontend & Backend)
   return (
     <section id="products-section" className="container mx-auto mt-32 mb-52">
       <h2 className="font-bold italic text-4xl text-center mb-11">
         <span className="text-primary">OUR</span> PRODUCTS
       </h2>
       <div className="grid grid-cols-4 gap-5">
+<<<<<<< HEAD
         {productList.map((product, index) => (
           <Link
             href={`/product/${product.name}`}
             key={index}
+=======
+        {products.map((product) => (
+          <Link
+            href={`/product/${product._id}`}
+            key={product._id}
+>>>>>>> 7bf438c (Update Integrasi Frontend & Backend)
             className="p-1.5 bg-white hover:drop-shadow-xl duration-300"
           >
             <div className="bg-primary-light aspect-square w-full flex justify-center items-center relative">
               <Image
+<<<<<<< HEAD
                 src={`/images/products/${product.imgUrl}`}
+=======
+                src={getImageUrl(product.imageUrl)}
+>>>>>>> 7bf438c (Update Integrasi Frontend & Backend)
                 alt={product.name}
                 width={300}
                 height={300}
                 className="aspect-square object-contain"
               />
+<<<<<<< HEAD
               <Button className="w-10 h-10 p-2! absolute right-3 top-3">
+=======
+              <Button
+                className="w-10 h-10 p-2! absolute right-3 top-3"
+                onClick={(e) => handleAddtoCart(e, product)}
+              >
+>>>>>>> 7bf438c (Update Integrasi Frontend & Backend)
                 <FiPlus size={24} />
               </Button>
             </div>
             <h3 className="font-medium text-lg mb-1.5 mt-4">{product.name}</h3>
             <div className="flex justify-between mb-8">
+<<<<<<< HEAD
               <div className="text-gray-500">{product.category}</div>
+=======
+              <div className="text-gray-500">{product.category.name}</div>
+>>>>>>> 7bf438c (Update Integrasi Frontend & Backend)
               <div className="font-medium text-primary">
                 {priceFormatter(product.price)}
               </div>
