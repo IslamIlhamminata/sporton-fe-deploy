@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { Product } from "../types";
-import { info } from "console";
 
 export interface CartItem extends Product {
   qty: number;
@@ -22,7 +21,7 @@ interface CartStore {
   reset: () => void;
 }
 
-export const useCartStore = create<TCartStore>()(
+export const useCartStore = create<CartStore>()(
   persist(
     (set, get) => ({
       customerInfo: null,
@@ -37,9 +36,7 @@ export const useCartStore = create<TCartStore>()(
         if (existingItem) {
           set({
             items: items.map((item) =>
-              item._id === product._id
-                ? { ...item, qty: item.qty + qty }
-                : item,
+              item._id === product._id ? { ...item, qty: item.qty + qty } : item
             ),
           });
         } else {
@@ -47,17 +44,14 @@ export const useCartStore = create<TCartStore>()(
         }
       },
       removeItem: (productId) => {
-        // items = [a,b,c,e]
-        // productId = c
-        // items = [a,b,e]
         set({ items: get().items.filter((item) => item._id !== productId) });
       },
       reset: () => {
-        set({ items: [] });
+        set({ items: [], customerInfo: null });
       },
     }),
     {
       name: "cart-storage",
-    },
-  ),
+    }
+  )
 );
